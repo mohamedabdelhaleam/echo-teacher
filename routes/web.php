@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Dashboard\DashboardController;
 use App\Http\Controllers\Dashboard\ProductController;
+use App\Http\Controllers\Dashboard\SectionController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -27,6 +28,7 @@ Route::prefix('dashboard')->name('dashboard.')->middleware('auth')->group(functi
     ##################################### Start Products Routes #####################################
 
     Route::resource('products', ProductController::class);
+    Route::resource('sections', SectionController::class);
 
     ##################################### End Products Routes #####################################
 });
