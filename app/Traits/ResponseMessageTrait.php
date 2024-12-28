@@ -11,14 +11,14 @@ trait ResponseMessageTrait
      * @return string
      */
 
-    //   1 = create , 2 = update , 3 = delete
+    //   1 = create , 2 = update , 3 = delete , 4 = change status
     public function successResponse($name = '', int $type)
     {
         switch ($type) {
             case 1:
                 return "تم انشاء $name بنجاح";
             case 2:
-                return "تم تحديث $name بنجاح";
+                return "تم تحديث بيانات $name بنجاح";
             case 3:
                 return "تم حذف $name بنجاح";
             case 4:
