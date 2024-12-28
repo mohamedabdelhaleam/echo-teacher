@@ -7,6 +7,7 @@ use App\Http\Requests\Dashboard\Section\StoreSectionRequest;
 use App\Http\Requests\Dashboard\Section\UpdateSectionRequest;
 use App\Services\Dashboard\SectionManagementService;
 use App\Traits\ResponseMessageTrait;
+use Illuminate\Support\Facades\Auth;
 
 class SectionController extends Controller
 {
@@ -21,7 +22,8 @@ class SectionController extends Controller
 
     public function index()
     {
-        $sections = $this->sectionManagmentService->getPaginatedSections();
+        $user = Auth::user();
+        $sections = $this->sectionManagmentService->getPaginatedSections($user->id);
         return view("dashboard.pages.sections.index", compact("sections"));
     }
 
@@ -32,7 +34,9 @@ class SectionController extends Controller
 
     public function store(StoreSectionRequest $request)
     {
+        $user = Auth::user();
         $data = $request->validated();
+        $data["teacher_id"] = $user->id;
         $section = $this->sectionManagmentService->createNewSection($data);
         if (!$section) {
             return redirect()->route("dashboard.sections.create")->with("error", $this->errorResponse($this->name, 1));
@@ -68,9 +72,17 @@ class SectionController extends Controller
     public function destroy($id)
     {
         $section = $this->sectionManagmentService->deleteSectionById($id);
+
         if (!$section) {
-            return redirect()->route("dashboard.sections.index")->with("error", $this->errorResponse($this->name, 3));
+            return response()->json([
+                'success' => false,
+                'message' => $this->errorResponse($this->name, 3)
+            ], 400);
         }
-        return redirect()->route("dashboard.sections.index")->with("success", $this->successResponse($this->name, 3));
+
+        return response()->json([
+            'success' => true,
+            'message' => $this->successResponse($this->name, 3)
+        ]);
     }
 }
