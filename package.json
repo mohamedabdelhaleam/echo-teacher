@@ -1,0 +1,27 @@
+{
+    "private": true,
+    "scripts": {
+        "dev": "vite",
+        "build": "vite build",
+        "watch": "tailwindcss -i ./resources/css/input.css -o ./resources/css/output.css --watch"
+    },
+    "devDependencies": {
+        "@tailwindcss/forms": "^0.5.2",
+        "alpinejs": "^3.4.2",
+        "autoprefixer": "^10.4.20",
+        "axios": "^1.1.2",
+        "laravel-vite-plugin": "^0.7.2",
+        "postcss": "^8.4.47",
+        "tailwindcss": "^3.4.11",
+        "vite": "^4.0.0"
+    },
+    "dependencies": {
+        "@studio-freight/lenis": "^1.0.42",
+        "@tailwindcss/typography": "^0.5.15",
+        "daisyui": "^4.12.10",
+        "gsap": "^3.12.5",
+        "keen-slider": "^6.8.6",
+        "lenis": "^1.1.13",
+        "toastr": "^2.1.4"
+    }
+}
