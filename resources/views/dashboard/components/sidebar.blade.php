@@ -9,11 +9,11 @@
                         {{-- <span class="toggle-icon"></span> --}}
                     </a>
                 </li>
-                
+
                 <li class="">
-                    <a href="{{ route('dashboard.products.index') }}" class="">
+                    <a href="{{ route('dashboard.sections.index') }}" class="">
                         <span class="nav-icon fas fa-cart-plus"></span>
-                        <span class="menu-text">Products</span>
+                        <span class="menu-text">الصفوف الدراسية</span>
                         <span class="toggle-icon"></span>
                     </a>
                 </li>
