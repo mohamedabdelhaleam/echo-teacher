@@ -16,8 +16,8 @@
 <link rel="stylesheet" href="{{ asset('dashboard/assets/vendor_assets/css/star-rating-svg.css') }}">
 <link rel="stylesheet" href="{{ asset('dashboard/assets/vendor_assets/css/trumbowyg.min.css') }}">
 <link rel="stylesheet" href="{{ asset('dashboard/assets/vendor_assets/css/wickedpicker.min.css') }}">
-<link rel="stylesheet" href="{{ asset('dashboard/style.css') }}">
-{{-- <link rel="stylesheet" href="{{ asset('dashboard/rtl.css') }}"> --}}
+{{-- <link rel="stylesheet" href="{{ asset('dashboard/style.css') }}"> --}}
+<link rel="stylesheet" href="{{ asset('dashboard/rtl.css') }}">
 <!-- endinject -->
 
 <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('img/favicon.png') }}">
