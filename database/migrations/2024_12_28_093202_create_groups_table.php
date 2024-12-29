@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->boolean('active')->default(true);
+            $table->integer('price');
             $table->foreignId('section_id')->constrained('sections')->onDelete('cascade');
             $table->timestamps();
         });
