@@ -56,6 +56,8 @@ class SectionManagementService
      */
     public function deleteSectionById($id)
     {
-        return Section::find($id)->delete();
+        $section = Section::find($id);
+        $section->groups()->delete();
+        return $section->delete();
     }
 }
