@@ -7,32 +7,32 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Dashboard\Group\StoreGroupRequest;
 use App\Http\Requests\Dashboard\Group\UpdateGroupRequest;
 use App\Services\Dashboard\GroupManagementService;
+use App\Services\Dashboard\SectionManagementService;
+use App\Traits\ResponseMessageTrait;
 
 class GroupController extends Controller
 {
     protected $groupManagementService;
+    protected $sectionManagmentService;
+    use ResponseMessageTrait;
     protected $name = "المجموعة";
 
-    public function __construct(GroupManagementService $groupManagementService)
+    public function __construct(GroupManagementService $groupManagementService, SectionManagementService $sectionManagmentService)
     {
         $this->groupManagementService = $groupManagementService;
+        $this->sectionManagmentService = $sectionManagmentService;
     }
 
     public function index($sectionId)
     {
         $groups =  $this->groupManagementService->getPaginatedgroupsInSection($sectionId);
-        return view("dashboard.groups.index", compact("groups"));
+        $section = $this->sectionManagmentService->findSectionById($sectionId);
+        return view("dashboard.pages.groups.index", compact("groups", "section"));
     }
 
-    public function show($id)
+    public function create($sectionId)
     {
-        $group = $this->groupManagementService->findgroupById($id);
-        return view("dashboard.groups.show", compact("group"));
-    }
-
-    public function create()
-    {
-        return view("dashboard.groups.create");
+        return view("dashboard.pages.groups.create", compact("sectionId"));
     }
 
     public function store(StoreGroupRequest $request)
@@ -40,15 +40,15 @@ class GroupController extends Controller
         $data = $request->validated();
         $group = $this->groupManagementService->createNewgroup($data);
         if (!$group) {
-            return redirect()->route("dashboard.groups.create")->with("error", $this->errorResponse($this->name, 1));
+            return redirect()->route("dashboard.groups.create", $group->section_id)->with("error", $this->errorResponse($this->name, 1));
         }
-        return redirect()->route("dashboard.groups.index")->with("success", $this->successResponse($this->name, 1));
+        return redirect()->route("dashboard.groups.index", parameters: $group->section_id)->with("success", $this->successResponse($this->name, 1));
     }
 
     public function edit($id)
     {
         $group = $this->groupManagementService->findgroupById($id);
-        return view("dashboard.groups.edit", compact("group"));
+        return view("dashboard.pages.groups.edit", compact("group"));
     }
 
     public function update(UpdateGroupRequest $request, $id)
@@ -58,15 +58,23 @@ class GroupController extends Controller
         if (!$group) {
             return redirect()->route("dashboard.groups.edit", $id)->with("error", $this->errorResponse($this->name, 2));
         }
-        return redirect()->route("dashboard.groups.index")->with("success", $this->successResponse($this->name, 2));
+        $group = $this->groupManagementService->findgroupById($id);
+        return redirect()->route("dashboard.groups.index", $group->section_id)->with("success", $this->successResponse($this->name, 2));
     }
 
     public function destroy($id)
     {
         $group = $this->groupManagementService->deletegroupById($id);
         if (!$group) {
-            return redirect()->route("dashboard.groups.index")->with("error", $this->errorResponse($this->name, 3));
+            return response()->json([
+                'success' => false,
+                'message' => $this->errorResponse($this->name, 3)
+            ], 400);
         }
-        return redirect()->route("dashboard.groups.index")->with("success", $this->successResponse($this->name, 3));
+
+        return response()->json([
+            'success' => true,
+            'message' => $this->successResponse($this->name, 3)
+        ]);
     }
 }
