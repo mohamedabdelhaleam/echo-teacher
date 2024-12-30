@@ -20,4 +20,9 @@ class group extends Model
     {
         return $this->belongsTo(section::class, 'section_id', 'id');
     }
+
+    public function students()
+    {
+        return $this->belongsToMany(student::class, 'student_groups', 'group_id', 'student_id');
+    }
 }
