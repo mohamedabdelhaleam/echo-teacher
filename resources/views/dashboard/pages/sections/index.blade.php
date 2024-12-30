@@ -97,6 +97,12 @@
                                                             <ul
                                                                 class="orderDatatable_actions mb-0 d-flex justify-content-start flex-wrap">
                                                                 <li>
+                                                                    <a href="{{ route('dashboard.groups.index', $section->id) }}"
+                                                                        class="edit" title="المجموعات">
+                                                                        <i class="uil uil-setting"></i>
+                                                                    </a>
+                                                                </li>
+                                                                <li>
                                                                     <a href="{{ route('dashboard.sections.edit', $section->id) }}"
                                                                         class="edit" title="تعديل">
                                                                         <i class="uil uil-edit"></i>
