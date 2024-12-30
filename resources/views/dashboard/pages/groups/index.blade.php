@@ -41,7 +41,7 @@
                                                         <span class="userDatatable-title">عدد الطلاب</span>
                                                     </th>
                                                     <th>
-                                                        <span class="userDatatable-title">الدخل</span>
+                                                        <span class="userDatatable-title">الدخل الشهري</span>
                                                     </th>
                                                     <th>
                                                         <span class="userDatatable-title">وقت الانشاء</span>
@@ -85,12 +85,12 @@
                                                         </td>
                                                         <td>
                                                             <div class="userDatatable-content--subject">
-                                                                200
+                                                                {{ optional($group->students)->count() }}
                                                             </div>
                                                         </td>
                                                         <td>
                                                             <div class="userDatatable-content--subject">
-                                                                {{ $group->price * 200 }}
+                                                                {{ $group->price * optional($group->students)->count() }}
                                                             </div>
                                                         </td>
                                                         <td>
