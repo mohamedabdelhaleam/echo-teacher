@@ -41,6 +41,9 @@
                                                         <span class="userDatatable-title">عدد الطلاب</span>
                                                     </th>
                                                     <th>
+                                                        <span class="userDatatable-title">الدخل الشهري</span>
+                                                    </th>
+                                                    <th>
                                                         <span class="userDatatable-title">وقت الانشاء</span>
                                                     </th>
 
@@ -82,7 +85,12 @@
                                                         </td>
                                                         <td>
                                                             <div class="userDatatable-content--subject">
-                                                                200
+                                                                {{ $section->groups->sum(fn($group) => $group->students->count()) }}
+                                                            </div>
+                                                        </td>
+                                                        <td>
+                                                            <div class="userDatatable-content--subject">
+                                                                {{ $section->groups->sum(fn($group) => $group->students->count() * $group->price) }}
                                                             </div>
                                                         </td>
                                                         <td>
@@ -90,9 +98,6 @@
                                                                 {{ $section->created_at }}
                                                             </div>
                                                         </td>
-
-
-
                                                         <td>
                                                             <ul
                                                                 class="orderDatatable_actions mb-0 d-flex justify-content-start flex-wrap">
