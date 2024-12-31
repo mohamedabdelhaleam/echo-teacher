@@ -23,7 +23,8 @@ class StoreSectionRequest extends FormRequest
     {
         return [
             'name' => 'required|string|max:255',
-            'active' => 'nullable|boolean'
+            'active' => 'nullable|boolean',
+            'year_id' => 'required|exists:years,id',
         ];
     }
 
@@ -33,6 +34,8 @@ class StoreSectionRequest extends FormRequest
             'name.required' => 'اسم الصف الدراسي مطلوب.',
             'name.max' => 'اسم الصف الدراسي يجب ألا يتجاوز 255 حرفاً.',
             'name.string' => 'اسم الصف الدراسي يجب أن يكون نصاً.',
+            'year_id.required' => 'السنة الدراسية مطلوبة.',
+            'year_id.exists' => 'السنة الدراسية غير موجودة.',
         ];
     }
 }
