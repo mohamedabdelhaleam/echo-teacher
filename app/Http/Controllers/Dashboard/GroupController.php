@@ -58,7 +58,6 @@ class GroupController extends Controller
         if (!$group) {
             return redirect()->route("dashboard.groups.edit", $id)->with("error", $this->errorResponse($this->name, 2));
         }
-        $group = $this->groupManagementService->findgroupById($id);
         return redirect()->route("dashboard.groups.index", $group->section_id)->with("success", $this->successResponse($this->name, 2));
     }
 
