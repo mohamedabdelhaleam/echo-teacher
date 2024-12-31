@@ -15,6 +15,10 @@ class group extends Model
     {
         return $query->where('active', true);
     }
+    public function scopeInActive($query)
+    {
+        return $query->where('active', false);
+    }
 
     public function section()
     {
