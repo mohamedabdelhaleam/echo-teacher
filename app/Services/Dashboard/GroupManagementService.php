@@ -37,7 +37,9 @@ class GroupManagementService
      */
     public function updategroupById($id, array $data)
     {
-        return group::find($id)->update($data);
+        $group = group::find($id);
+        $group->update($data);
+        return $group;
     }
 
     /**
