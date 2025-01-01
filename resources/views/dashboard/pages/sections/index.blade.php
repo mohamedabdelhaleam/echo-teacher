@@ -16,11 +16,11 @@
 
                     <div class="card">
                         <div class="card-header color-dark fw-500">
-                            <p>الصفوف الدراسية</p>
+                            <p>الصفوف الدراسية سنة ( {{ $year->name }} )</p>
                         </div>
                         <div class="card-body p-0">
                             <div class="table4 p-25 mb-30">
-                                <a href="{{ route('dashboard.sections.create') }}" class="btn btn-primary my-2">اضافة صف
+                                <a href="{{ route('dashboard.sections.create' , ['yearId' => $year->id]) }}" class="btn btn-primary my-2">اضافة صف
                                     جديد</a>
                                 <div class="userDatatable userDatatable--ticket userDatatable--ticket--2 mt-1">
                                     <div class="table-responsive">
@@ -35,7 +35,7 @@
                                                         <span class="userDatatable-title">الحالة</span>
                                                     </th>
                                                     <th>
-                                                        <span class="userDatatable-title">عدد المجاميع</span>
+                                                        <span class="userDatatable-title">عدد المجاميع النشطة</span>
                                                     </th>
                                                     <th>
                                                         <span class="userDatatable-title">عدد الطلاب</span>
@@ -80,19 +80,22 @@
                                                         </td>
                                                         <td>
                                                             <div class="userDatatable-content--subject">
-                                                                {{ count($section->groups) }}
+                                                                {{ count($section->groups->where('active', true)) }}
                                                             </div>
                                                         </td>
                                                         <td>
                                                             <div class="userDatatable-content--subject">
-                                                                {{ $section->groups->sum(fn($group) => $group->students->count()) }}
+                                                                {{ $section->groups->where('active', true)->sum(fn($group) => $group->students->count()) }}
                                                             </div>
                                                         </td>
                                                         <td>
                                                             <div class="userDatatable-content--subject">
-                                                                {{ $section->groups->sum(fn($group) => $group->students->count() * $group->price) }}
+                                                                {{ $section->groups->where('active', true)->sum(function ($group) {
+                                                                    return $group->students->count() * $group->price;
+                                                                }) }}
                                                             </div>
                                                         </td>
+
                                                         <td>
                                                             <div class="userDatatable-content--subject">
                                                                 {{ $section->created_at }}
