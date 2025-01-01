@@ -25,6 +25,8 @@
                                             <label>اسم الصف</label>
                                             <input type="text" class="form-control form-control-lg" name="name"
                                                 required value="{{ old('name') }}">
+                                            <input type="hidden" class="form-control form-control-lg" name="year_id"
+                                                required value="{{ $yearId }}">
                                             @if ($errors->has('name'))
                                                 <p class="text-danger">{{ $errors->first('name') }}</p>
                                             @endif
