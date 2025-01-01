@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string('name');
             $table->boolean('active')->default(true);
             $table->foreignId('teacher_id')->constrained('users')->onDelete('cascade');
+            $table->foreignId('year_id')->constrained('years')->onDelete('cascade');
             $table->timestamps();
         });
     }
