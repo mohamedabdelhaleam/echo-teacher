@@ -9,9 +9,9 @@ class SectionManagementService
     /**
      * Retrieve a paginated list of Sections.
      */
-    public function getPaginatedSections($userId)
+    public function getPaginatedSections($yearId)
     {
-        return section::where('teacher_id', $userId)
+        return section::where('year_id', $yearId)
             ->orderBy('created_at', 'desc')
             ->paginate(12);
     }
@@ -37,7 +37,9 @@ class SectionManagementService
      */
     public function updateSectionById($id, array $data)
     {
-        return Section::find($id)->update($data);
+        $section = Section::find($id);
+        $section->update($data);
+        return $section;
     }
 
     /**
