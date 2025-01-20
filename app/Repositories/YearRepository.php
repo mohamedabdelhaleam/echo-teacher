@@ -9,9 +9,9 @@ class YearRepository implements YearRepositoryInterface
 {
     public function getYears($userId)
     {
-        return Year::where('user_id', $userId)
+        return Year::where('teacher_id', $userId)
             ->orderBy('created_at', 'desc')
-            ->paginate(10);
+            ->get();
     }
 
     public function findYear($id)
