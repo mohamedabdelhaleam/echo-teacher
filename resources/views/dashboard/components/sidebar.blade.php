@@ -5,15 +5,15 @@
                 <li>
                     <a href="{{ route('dashboard.index') }}" class="">
                         <span class="nav-icon uil uil-create-dashboard"></span>
-                        <span class="menu-text">Dashboard</span>
+                        <span class="menu-text">لوحة التحكم</span>
                         {{-- <span class="toggle-icon"></span> --}}
                     </a>
                 </li>
 
                 <li class="">
-                    <a href="{{ route('dashboard.sections.index') }}" class="">
+                    <a href="{{ route('dashboard.years.index') }}" class="">
                         <span class="nav-icon fas fa-cart-plus"></span>
-                        <span class="menu-text">الصفوف الدراسية</span>
+                        <span class="menu-text">السنوات الدراسية</span>
                         <span class="toggle-icon"></span>
                     </a>
                 </li>
