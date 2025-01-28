@@ -24,6 +24,11 @@ class section extends Model
         return $this->belongsTo(User::class, 'teacher_id', 'id');
     }
 
+    public function year()
+    {
+        return $this->belongsTo(year::class, 'year_id', 'id');
+    }
+
     public function groups()
     {
         return $this->hasMany(group::class, 'section_id', 'id');
