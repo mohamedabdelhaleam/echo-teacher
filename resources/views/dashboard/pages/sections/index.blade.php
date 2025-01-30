@@ -16,11 +16,11 @@
 
                     <div class="card">
                         <div class="card-header color-dark fw-500">
-                            <p>الصفوف الدراسية سنة ( {{ $year->name }} )</p>
+                            <p>الصفوف الدراسية سنة ( {{ $sections[0]->year->name }} )</p>
                         </div>
                         <div class="card-body p-0">
                             <div class="table4 p-25 mb-30">
-                                <a href="{{ route('dashboard.sections.create' , ['yearId' => $year->id]) }}" class="btn btn-primary my-2">اضافة صف
+                                <a href="{{ route('dashboard.sections.create' , ['yearId' => $sections[0]->year->id]) }}" class="btn btn-primary my-2">اضافة صف
                                     جديد</a>
                                 <div class="userDatatable userDatatable--ticket userDatatable--ticket--2 mt-1">
                                     <div class="table-responsive">
@@ -80,7 +80,7 @@
                                                         </td>
                                                         <td>
                                                             <div class="userDatatable-content--subject">
-                                                                {{ count($section->groups->where('active', true)) }}
+                                                                {{$section->groups_count }}
                                                             </div>
                                                         </td>
                                                         <td>
