@@ -2,10 +2,11 @@
 
 namespace App\Providers;
 
+use App\Repositories\Interfaces\SectionRepositoryInterface;
 use App\Repositories\Interfaces\YearRepositoryInterface;
+use App\Repositories\SectionRepository;
 use App\Repositories\YearRepository;
 use Illuminate\Support\Facades\Schema;
-use Illuminate\Support\Facades\URL;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -16,6 +17,7 @@ class AppServiceProvider extends ServiceProvider
     public function register(): void
     {
         $this->app->bind(YearRepositoryInterface::class, YearRepository::class);
+        $this->app->bind(SectionRepositoryInterface::class, SectionRepository::class);
     }
 
     /**
